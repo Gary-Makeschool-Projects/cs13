@@ -26,18 +26,30 @@ def decode(digits, base):
     """
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
-    llen = len(digits)
-    power = 1  # Initialize power of base
-    num = 0  # result
-    for i in range(llen - 1, -1, -1):
-        # A digit in input number must
-        # be less than number's base
-        if val(str[i]) >= base:
-            print('Invalid Number')
-            return -1
-        num += val(str[i]) * power
-        power = power * base
-    return num
+    #############  edited version of kevins god tier code (removed pow) ##########
+    CONVERT_STRING = string.digits + string.ascii_lowercase
+    BASE_DECODE = {digit: val for val, digit in enumerate(CONVERT_STRING)}
+    decoded = 0
+    for i, digit in enumerate(reversed(digits)):
+        decoded += ((base**i) * BASE_DECODE[digit])
+    return decoded
+    #############  edited version of kevins god tier code (removed pow) ##########
+
+    # my pretty lame code
+    # decoded = 0  # product
+    # # base ^ n
+    # n = len(digits) - 1
+    # # check each number in digit and raise it to ^n
+    # for num in digits:
+    #     # digit (base 10)
+    #     digit = (CONVERT_STRING.index(num) * (base ** n))
+    #     # add that value to our total
+    #     decoded += digit
+
+    #     n -= 1  # inverse of encode where encode is log base n decode is base raised to the n
+
+    # return decoded  # product
+
 
 def encode(number, base, numerals="0123456789abcdefghijklmnopqrstuvwxyz"):
     """Encode given number in base 10 to digits in given base.
@@ -85,6 +97,9 @@ def convert(digits, base1, base2):
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base1 <= 36, 'base1 is out of range: {}'.format(base1)
     assert 2 <= base2 <= 36, 'base2 is out of range: {}'.format(base2)
+    if base1 == 10:
+        return encode(int(digits), base2)
+    return encode(decode(digits, base1), base2)
 
 
 def main():
