@@ -11,6 +11,11 @@ def linear_search(array, item):
 
 def linear_search_iterative(array, item):
     """
+    Time Complexity
+    ---------------
+    Best Case: Ω(1) target is at index 0
+    Average Case: O(n) we iterate over n items until target found
+    Worst Case: Θ(n) target is at the end of the array 
     names = ['Alex', 'Brian', 'Julia', 'Kojin', 'Nabil', 'Nick', 'Winnie']
     >>> linear_search_recursive('Alex')
     '0'
@@ -30,6 +35,11 @@ def linear_search_iterative(array, item):
 
 def linear_search_recursive(array, item, index=0):
     """
+    Time Complexity
+    ---------------
+    Best Case: Ω(1) target is at index 0
+    Average Case: O(n) we iterate over n items until target found
+    Worst Case: Θ(n) target is at the end of the array 
     names = ['Alex', 'Brian', 'Julia', 'Kojin', 'Nabil', 'Nick', 'Winnie']
     >>> linear_search_recursive('Alex')
     '0'
@@ -76,7 +86,7 @@ def binary_search_iterative(array, item):
 
     Time Complexity
     ---------------
-    Best Case: Θ(1) target is middle index
+    Best Case: Ω(1) target is middle index
     Average Case: O(log𝑛)
     Worst Case: Θ(log𝑛)
     """
@@ -138,7 +148,7 @@ def binary_search_recursive(array, item):
 
     Time Complexity
     ---------------
-    Best Case: Θ(1)
+    Best Case: Ω(1)
     Average Case: O(log𝑛)
     Worst Case: Θ(log𝑛)
     """
