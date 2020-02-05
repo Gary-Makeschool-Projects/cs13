@@ -167,12 +167,15 @@ def whyAlan(array, item, l, r):
     # check case
     if l > r:
         return None
+
     # the midpoint or bisection
     bisect = (l + r) // 2
     # check side item should be on
     if array[bisect] < item:
+
         # Else the element can only be present in left subarray
         return whyAlan(array, item, bisect + 1, r)
+
     elif array[bisect] > item:
         # Else the element can only be present in right subarray
         return whyAlan(array, item, l, bisect - 1)
