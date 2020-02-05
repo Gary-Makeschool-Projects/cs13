@@ -79,7 +79,6 @@ def binary_search_iterative(array, item):
     Best Case: Θ(1) target is middle index
     Average Case: O(log𝑛)
     Worst Case: Θ(log𝑛)
-
     """
     """ For the case of 1 read, the position should be in the middle so there is a probability of 1𝑛 for this case
         For the case of 2 reads, one will read the middle position and then 1 of the 2 other middle positions from the 2 sub-arrays. This probability is 2𝑛
@@ -164,19 +163,19 @@ def binary_search_recursive(array, item):
     return whyAlan(array, item, l, r)
 
 
-def whyAlan(array, item, left, right):
+def whyAlan(array, item, l, r):
     # check case
-    if left > right:
+    if l > r:
         return None
     # the midpoint or bisection
-    bisect = (left + right) // 2
+    bisect = (l + r) // 2
     # check side item should be on
     if array[bisect] < item:
         # Else the element can only be present in left subarray
-        return whyAlan(array, item, bisect + 1, right)
+        return whyAlan(array, item, bisect + 1, r)
     elif array[bisect] > item:
         # Else the element can only be present in right subarray
-        return whyAlan(array, item, left, bisect - 1)
+        return whyAlan(array, item, l, bisect - 1)
     else:
         # Check if item is present at middle
         return bisect
