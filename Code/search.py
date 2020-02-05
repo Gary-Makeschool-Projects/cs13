@@ -159,18 +159,19 @@ def binary_search_recursive(array, item, left=None, right=None):
         The summation part is actually 1−2log(𝑛)1−2=2log(𝑛)−1=𝑛−1 which is definitely less than 𝑛, multiplying this with log(𝑛)𝑛 gives you what you want log(𝑛)
         So you will get the bound as you want  Θ(log(𝑛))
     """
-    if not left or not right:
+    if left is None or right is None:
         left = 0
         right = len(array) - 1
+        bisect = left + (right - left) // 2
     # check case
     if left > right:
         # the midpoint or bisection
         bisect = left + (right - left) // 2
 
-        if array[bisect] < item:
+        if array[bisect] > item:
             return binary_search_recursive(array, item, bisect+1, right)
         # Else the element can only be present in right subarray
-        elif array[bisect] > item:
+        elif array[bisect] < item:
             return binary_search_recursive(array, item, left, bisect-1)
     else:
         # Element is not present in the array
@@ -178,4 +179,4 @@ def binary_search_recursive(array, item, left=None, right=None):
 
 
 names = ['Alex', 'Brian', 'Julia', 'Kojin', 'Nabil', 'Nick', 'Winnie']
-print(binary_search_recursive(names, 'Julia'))
+print(binary_search_recursive(names, 'Winnie'))
