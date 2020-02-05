@@ -106,11 +106,11 @@ def binary_search_iterative(array, item):
         bisect = l + (r - l) // 2
 
         # Check if item  is present at mid
-        if arr[bisect] == x:
+        if arr[bisect] == item:
             return bisect
 
         # If item is greater, ignore left half
-        elif arr[bisect] < x:
+        elif arr[bisect] < item:
             l = bisect + 1
 
         # If item is smaller, ignore right half
