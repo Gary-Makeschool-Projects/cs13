@@ -13,9 +13,16 @@ def linear_search_iterative(array, item):
     """
     Time Complexity
     ---------------
-    Best Case: Ω(1) target is at index 0
-    Average Case: O(n) we iterate over n items until target found
-    Worst Case: Θ(n) target is at the end of the array 
+    Best Case: Ω(1) 
+    Average Case: O(n)
+    Worst Case: Θ(n) 
+
+    If it is known that the target occurs once in the array, the best case of the
+    iterative function will be at the initial index, this means at most n - 1 
+    comparisons are needed and the expected number of comparisons is:
+    (n+2)(n-1) / 2(n)
+    ------------------------------------------------------
+
     names = ['Alex', 'Brian', 'Julia', 'Kojin', 'Nabil', 'Nick', 'Winnie']
     >>> linear_search_recursive('Alex')
     '0'
@@ -37,9 +44,16 @@ def linear_search_recursive(array, item, index=0):
     """
     Time Complexity
     ---------------
-    Best Case: Ω(1) target is at index 0
-    Average Case: O(n) we iterate over n items until target found
-    Worst Case: Θ(n) target is at the end of the array 
+    Best Case: Ω(1) 
+    Average Case: O(n)
+    Worst Case: Θ(n) 
+
+
+    If it is known that the target occurs once in the array, the best case of the
+    iterative function will be at the initial index, this means at most n - 1 
+    comparisons are needed and the expected number of comparisons is:
+    (n+2)(n-1) / 2(n)
+    ------------------------------------------------------
     names = ['Alex', 'Brian', 'Julia', 'Kojin', 'Nabil', 'Nick', 'Winnie']
     >>> linear_search_recursive('Alex')
     '0'
