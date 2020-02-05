@@ -56,9 +56,7 @@ def binary_search(array, item):
     # implement binary_search_iterative and binary_search_recursive below, then
     # change this to call your implementation to verify it passes all tests
     # return binary_search_iterative(array, item)
-    left = 0
-    right = len(array) - 1
-    return binary_search_recursive(array, item, left=left, right=right)
+    return binary_search_recursive(array, item)
 
 
 def binary_search_iterative(array, item):
@@ -124,7 +122,7 @@ def binary_search_iterative(array, item):
     return None
 
 
-def binary_search_recursive(array, item, left, right):
+def binary_search_recursive(array, item, left=None, right=None):
     """
     names = ['Alex', 'Brian', 'Julia', 'Kojin', 'Nabil', 'Nick', 'Winnie']
     >>> binary_search_recursive(names, 'Alex')
@@ -161,23 +159,23 @@ def binary_search_recursive(array, item, left, right):
         The summation part is actually 1−2log(𝑛)1−2=2log(𝑛)−1=𝑛−1 which is definitely less than 𝑛, multiplying this with log(𝑛)𝑛 gives you what you want log(𝑛)
         So you will get the bound as you want  Θ(log(𝑛))
     """
-    left = 0
-    right = len(array) - 1
-    # Check base case
-    if right > left:
+    if not left or not right:
+        left = 0
+        right = len(array) - 1
+    # check case
+    if left > right:
         # the midpoint or bisection
         bisect = left + (right - left) // 2
 
-        if array[bisect] == item:
-            return bisect
-
+        if array[bisect] < item:
+            return binary_search_recursive(array, item, bisect+1, right)
+        # Else the element can only be present in right subarray
         elif array[bisect] > item:
             return binary_search_recursive(array, item, left, bisect-1)
-
-        # Else the element can only be present in right subarray
-        else:
-            return binary_search_recursive(array, item, bisect+1, right)
-
     else:
         # Element is not present in the array
-        return None
+        return bisect
+
+
+names = ['Alex', 'Brian', 'Julia', 'Kojin', 'Nabil', 'Nick', 'Winnie']
+print(binary_search_recursive(names, 'Julia'))
