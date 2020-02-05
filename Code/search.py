@@ -77,7 +77,7 @@ def binary_search_iterative(array, item):
     Time Complexity
     ---------------
     Best Case: Θ(1) target is middle index
-    Average Case: O(log𝑛) 
+    Average Case: O(log𝑛)
     Worst Case: Θ(log𝑛)
 
     """
@@ -122,7 +122,7 @@ def binary_search_iterative(array, item):
     return None
 
 
-def binary_search_recursive(array, item, left=None, right=None):
+def binary_search_recursive(array, item):
     """
     names = ['Alex', 'Brian', 'Julia', 'Kojin', 'Nabil', 'Nick', 'Winnie']
     >>> binary_search_recursive(names, 'Alex')
@@ -159,24 +159,24 @@ def binary_search_recursive(array, item, left=None, right=None):
         The summation part is actually 1−2log(𝑛)1−2=2log(𝑛)−1=𝑛−1 which is definitely less than 𝑛, multiplying this with log(𝑛)𝑛 gives you what you want log(𝑛)
         So you will get the bound as you want  Θ(log(𝑛))
     """
-    if left is None or right is None:
-        left = 0
-        right = len(array) - 1
-        bisect = left + (right - left) // 2
+    l = 0  # left endpoint
+    r = len(array) - 1  # right endpoint
+    return whyAlan(array, item, l, r)
+
+
+def whyAlan(array, item, left, right):
     # check case
     if left > right:
-        # the midpoint or bisection
-        bisect = left + (right - left) // 2
-
-        if array[bisect] > item:
-            return binary_search_recursive(array, item, bisect+1, right)
+        return None
+    # the midpoint or bisection
+    bisect = (left + right) // 2
+    # check side item should be on
+    if array[bisect] < item:
+        # Else the element can only be present in left subarray
+        return whyAlan(array, item, bisect + 1, right)
+    elif array[bisect] > item:
         # Else the element can only be present in right subarray
-        elif array[bisect] < item:
-            return binary_search_recursive(array, item, left, bisect-1)
+        return whyAlan(array, item, left, bisect - 1)
     else:
-        # Element is not present in the array
+        # Check if item is present at middle
         return bisect
-
-
-names = ['Alex', 'Brian', 'Julia', 'Kojin', 'Nabil', 'Nick', 'Winnie']
-print(binary_search_recursive(names, 'Winnie'))
