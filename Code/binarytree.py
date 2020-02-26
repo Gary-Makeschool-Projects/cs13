@@ -5,9 +5,9 @@ class BinaryTreeNode(object):
 
     def __init__(self, data):
         """Initialize this binary tree node with the given data."""
-        self.data = data
-        self.left = None
-        self.right = None
+        self.data = data    # data housed
+        self.left = None  # left pointer
+        self.right = None  # right pointer
 
     def __repr__(self):
         """Return a string representation of this binary tree node."""
@@ -16,23 +16,25 @@ class BinaryTreeNode(object):
     def is_leaf(self):
         """Return True if this node is a leaf (has no children)."""
         # TODO: Check if both left child and right child have no value
-        return ... and ...
+        if self.left and self.right is None:
+            return True
 
     def is_branch(self):
         """Return True if this node is a branch (has at least one child)."""
         # TODO: Check if either left child or right child has a value
-        return ... or ...
+        if self.left and self.right is None:
+            return True
 
     def height(self):
         """Return the height of this node (the number of edges on the longest
         downward path from this node to a descendant leaf node).
         TODO: Best and worst case running time: ??? under what conditions?"""
         # TODO: Check if left child has a value and if so calculate its height
-        ...
+        if self.left and self.right is None:
+            self.height = 0
         # TODO: Check if right child has a value and if so calculate its height
-        ...
-        # Return one more than the greater of the left height and right height
-        ...
+        if self.right:
+            self.r
 
 
 class BinarySearchTree(object):
@@ -58,7 +60,6 @@ class BinarySearchTree(object):
         downward path from this tree's root node to a descendant leaf node).
         TODO: Best and worst case running time: ??? under what conditions?"""
         # TODO: Check if root node has a value and if so calculate its height
-        ...
 
     def contains(self, item):
         """Return True if this binary search tree contains the given item.
